@@ -1,0 +1,21 @@
+Problema:
+
+Imagine que você está criando uma aplicação de gerenciamento de logística.
+A primeira versão da sua aplicação pode lidar apenas com o transporte de caminhões, portanto a maior parte do seu código fica dentro da classe Caminhão.
+
+Depois de um tempo, sua aplicação se torna bastante popular.
+Todos os dias você recebe dezenas de solicitações de empresas de transporte marítimo para incorporar a logística marítima na aplicação.
+Boa notícia, certo? Mas e o código? Atualmente, a maior parte do seu código é acoplada à classe Caminhão.
+
+Adicionar Navio à aplicação exigiria alterações em toda a base de código. 
+Além disso, se mais tarde você decidir adicionar outro tipo de transporte à aplicação, provavelmente precisará fazer todas essas alterações novamente.
+Como resultado, você terá um código bastante sujo, repleto de condicionais que alteram o comportamento da aplicação, dependendo da classe de objetos de transporte.
+
+Solução:
+
+1 - Interface Transporte: Define a interface comum para todos os tipos de transporte.
+2 - Classes Caminhao e Navio: Implementam a interface Transporte e fornecem implementações específicas para o método entregar.
+3 - Classe TransporteFactory: É uma classe abstrata que declara o método de fábrica criarTransporte. Ela também define um método entregarTransporte que usa o objeto criado pelo método de fábrica.
+4 - Classes CaminhaoFactory e NavioFactory: São fábricas concretas que implementam o método criarTransporte para criar instâncias de Caminhao e Navio, respectivamente.
+5 - Função startTransportProcess: Demonstra como usar as fábricas para criar e usar os objetos de transporte sem precisar saber qual classe concreta está sendo instanciada.
+Esse padrão facilita a adição de novos tipos de transporte no futuro. Para adicionar um novo tipo de transporte, basta criar uma nova classe que implementa a interface Transporte e uma nova fábrica que estende TransporteFactory, sem modificar o código existente.
