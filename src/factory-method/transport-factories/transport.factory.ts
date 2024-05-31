@@ -7,6 +7,27 @@ export abstract class TransportFactory {
   //Method that uses the created transport
   initiateDelivery(): any {
     const transport = this.createTransport();
-    return transport.deliver();
+
+    switch (transport.type) {
+      case "TRUCK":
+        return {
+          transport: {
+            type: transport.type,
+            numberOfTires: transport.getNumberOfTires?.(),
+          },
+
+          observations: transport.deliveryTime(),
+        };
+
+      case "SHIP":
+        return {
+          transport: {
+            type: transport.type,
+            containerCapacity: transport.getContainerCapacity?.(),
+          },
+
+          observations: transport.deliveryTime(),
+        };
+    }
   }
 }
